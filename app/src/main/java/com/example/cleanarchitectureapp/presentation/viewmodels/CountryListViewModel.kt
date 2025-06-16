@@ -7,9 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.cleanarchitectureapp.data.repository.Result
 import com.example.cleanarchitectureapp.domain.model.Country
 import com.example.cleanarchitectureapp.domain.usecase.GetCountriesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CountryListViewModel(private val getCountriesUseCase: GetCountriesUseCase) : ViewModel() {
+@HiltViewModel
+class CountryListViewModel @Inject constructor(
+    private val getCountriesUseCase: GetCountriesUseCase
+) : ViewModel() {
     private val _countries = MutableLiveData<List<Country>>()
     val countries: LiveData<List<Country>> get() = _countries
 

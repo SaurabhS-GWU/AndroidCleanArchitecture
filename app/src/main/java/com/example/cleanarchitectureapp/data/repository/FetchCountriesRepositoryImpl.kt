@@ -4,9 +4,11 @@ import com.example.cleanarchitectureapp.data.remote.FetchCountriesApi
 import com.example.cleanarchitectureapp.domain.model.Country
 import com.example.cleanarchitectureapp.domain.repository.FetchCountriesRepository
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class FetchCountriesRepositoryImpl(private val apiService: FetchCountriesApi) :
-    FetchCountriesRepository {
+class FetchCountriesRepositoryImpl @Inject constructor(
+    private val apiService: FetchCountriesApi
+) : FetchCountriesRepository {
     override suspend fun fetchCountries(): Result<List<Country>> {
         var attempt = 0
         // Initially we will start with a delay
