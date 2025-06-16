@@ -20,7 +20,7 @@ class FetchCountriesRepositoryImpl @Inject constructor(
             val response = apiService.fetchCountries()
             if (response.isSuccessful) {
                 val countries = response.body()?.mapNotNull { dto ->
-                    dto.name?.takeIf { it.isNotBlank() }?.let {
+                    dto.name.takeIf { it.isNotBlank() }?.let {
                         Country(name = it, code= dto.code ,capital = dto.capital, region = dto.region)
                     }
                 } ?: emptyList()
